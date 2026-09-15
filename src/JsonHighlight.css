@@ -1,0 +1,21 @@
+/* Dark code block — always dark regardless of app theme, like most code editors */
+.jh-pre {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  margin: 0;
+  padding: 14px 18px;
+  background: var(--json-bg, var(--vscode-textCodeBlock-background, #1a1b26)) !important;
+  color: var(--json-fg, var(--vscode-foreground, #a9b1d6)) !important;
+  white-space: pre;
+  overflow-x: auto;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+/* Tokyo Night color scheme */
+.jh-key  { color: var(--json-key, #7aa2f7) !important; }
+.jh-str  { color: var(--json-string, #9ece6a) !important; }
+.jh-num  { color: var(--json-number, #ff9e64) !important; }
+.jh-bool { color: var(--json-bool, #bb9af7) !important; }
+.jh-null { color: var(--json-null, #565f89) !important; }

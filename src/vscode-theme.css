@@ -1,0 +1,609 @@
+/* Global semantic tokens. VS Code supplies the variables in a webview;
+   fallbacks keep the standalone browser app usable. */
+:root {
+  --app-bg: var(--vscode-editor-background, #ffffff);
+  --app-surface: var(--vscode-editorWidget-background, #ffffff);
+  --app-surface-muted: var(--vscode-sideBar-background, #f9fafb);
+  --app-fg: var(--vscode-foreground, #111827);
+  --app-muted: var(--vscode-descriptionForeground, #6b7280);
+  --app-border: var(--vscode-panel-border, #e5e7eb);
+  --app-input-bg: var(--vscode-input-background, #ffffff);
+  --app-input-fg: var(--vscode-input-foreground, #111827);
+  --app-hover: var(--vscode-list-hoverBackground, #f0f4ff);
+  --app-link: var(--vscode-textLink-foreground, #4f46e5);
+  --badge-neutral-bg: var(--vscode-badge-background, #e5e7eb);
+  --badge-neutral-fg: var(--vscode-badge-foreground, #374151);
+  --badge-live-bg: color-mix(in srgb, var(--vscode-testing-iconPassed, #16a34a) 22%, var(--app-surface, #ffffff));
+  --badge-live-fg: var(--vscode-testing-iconPassed, #15803d);
+  --badge-danger-bg: var(--vscode-inputValidation-errorBackground, #fee2e2);
+  --badge-danger-fg: var(--vscode-errorForeground, #991b1b);
+  --badge-warning-bg: color-mix(in srgb, var(--vscode-editorWarning-foreground, #ca8a04) 22%, var(--app-surface, #ffffff));
+  --badge-warning-fg: var(--vscode-editorWarning-foreground, #92400e);
+  --badge-info-bg: color-mix(in srgb, var(--vscode-textLink-foreground, #2563eb) 18%, var(--app-surface, #ffffff));
+  --badge-info-fg: var(--vscode-textLink-foreground, #1e40af);
+  --badge-accent-bg: color-mix(in srgb, var(--vscode-textLink-foreground, #7c3aed) 18%, var(--app-surface, #ffffff));
+  --badge-accent-fg: var(--vscode-button-secondaryForeground, #5b21b6);
+  --json-bg: var(--vscode-textCodeBlock-background, #f8fafc);
+  --json-fg: var(--vscode-foreground, #111827);
+  --json-key: var(--vscode-symbolIcon-propertyForeground, #2563eb);
+  --json-string: var(--vscode-symbolIcon-stringForeground, #15803d);
+  --json-number: var(--vscode-symbolIcon-numberForeground, #c2410c);
+  --json-bool: var(--vscode-symbolIcon-booleanForeground, #7e22ce);
+  --json-null: var(--vscode-descriptionForeground, #6b7280);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --app-bg: var(--vscode-editor-background, #0f1117);
+    --app-surface: var(--vscode-editorWidget-background, #1f2937);
+    --app-surface-muted: var(--vscode-sideBar-background, #111827);
+    --app-fg: var(--vscode-foreground, #e5e7eb);
+    --app-muted: var(--vscode-descriptionForeground, #9ca3af);
+    --app-border: var(--vscode-panel-border, #374151);
+    --app-input-bg: var(--vscode-input-background, #1f2937);
+    --app-input-fg: var(--vscode-input-foreground, #e5e7eb);
+    --app-hover: var(--vscode-list-hoverBackground, #293548);
+    --json-bg: var(--vscode-textCodeBlock-background, #1a1b26);
+    --json-fg: var(--vscode-foreground, #e5e7eb);
+    --json-key: var(--vscode-symbolIcon-propertyForeground, #7aa2f7);
+    --json-string: var(--vscode-symbolIcon-stringForeground, #9ece6a);
+    --json-number: var(--vscode-symbolIcon-numberForeground, #ff9e64);
+    --json-bool: var(--vscode-symbolIcon-booleanForeground, #bb9af7);
+    --json-null: var(--vscode-descriptionForeground, #9ca3af);
+  }
+}
+
+.badge.neutral,
+.ql-live-badge--live,
+.ql-live-badge--connecting,
+.ql-live-badge--disconnected,
+.badge.danger,
+.badge.warning,
+.badge.info,
+.badge.fifo {
+  border: 1px solid color-mix(in srgb, currentColor 24%, transparent);
+}
+
+.badge.neutral {
+  background: var(--badge-neutral-bg) !important;
+  color: var(--badge-neutral-fg) !important;
+}
+
+.badge.danger,
+.ql-live-badge--disconnected {
+  background: var(--badge-danger-bg) !important;
+  color: var(--badge-danger-fg) !important;
+}
+
+.badge.warning,
+.ql-live-badge--connecting {
+  background: var(--badge-warning-bg) !important;
+  color: var(--badge-warning-fg) !important;
+}
+
+.badge.info {
+  background: var(--badge-info-bg) !important;
+  color: var(--badge-info-fg) !important;
+}
+
+.badge.fifo {
+  background: var(--badge-accent-bg) !important;
+  color: var(--badge-accent-fg) !important;
+}
+
+.ql-live-badge--live {
+  background: var(--badge-live-bg) !important;
+  color: var(--badge-live-fg) !important;
+}
+
+.ql-live-badge--live .ql-live-dot { background: var(--vscode-testing-iconPassed, #16a34a) !important; }
+.ql-live-badge--connecting .ql-live-dot { background: var(--vscode-editorWarning-foreground, #ca8a04) !important; }
+.ql-live-badge--disconnected .ql-live-dot { background: var(--vscode-errorForeground, #dc2626) !important; }
+
+body, #root { background: var(--app-bg); color: var(--app-fg); }
+.layout-content, .page, .ql-page, .detail, .dt-page, .fj-page, .dy-page, .pg-page { background: var(--app-bg); color: var(--app-fg); }
+
+.sp-card, .tp-card, .tp-editor, .ab-card, .ab-section,
+.dt-input-section, .dt-panel, .dt-claim, .fj-controls, .fj-editor, .fj-output,
+.dy-list, .dy-detail, .dy-record-detail, .dy-meta, .pg-table-list, .pg-main, .pg-data, .pg-row-detail,
+.cq-modal, .sm-modal, .smode-modal, .lt-modal, .dy-editor, .dy-confirm,
+.pg-dialog, .pg-confirm, .message-card, .confirm-dialog, .tp-confirm,
+.tp-cat-manager, .cq-defaults, .sm-confirm {
+  background: var(--app-surface);
+  color: var(--app-fg);
+  border-color: var(--app-border);
+}
+
+input, select, textarea,
+.sp-input, .sp-select, .tp-input, .tp-select, .tp-textarea,
+.dt-textarea, .fj-textarea, .dy-header-actions select, .dy-editor-body textarea,
+.pg-dialog-body textarea {
+  background: var(--app-input-bg);
+  color: var(--app-input-fg);
+  border-color: var(--app-border);
+}
+
+h1, h2, h3, label, li, td, th, code, .page-title, .queue-name code,
+.dt-header h1, .fj-header h1, .dy-page-header h1, .pg-header h1,
+.pg-selected-header h2, .tp-card-name, .tp-editor-header h2, .ab-name,
+.ab-section h3, .detail-title, .attr-value { color: var(--app-fg); }
+
+p, small, .dt-header p, .fj-header p, .dy-page-header p, .pg-header p,
+.pg-selected-header p, .sp-hint, .tp-card-desc, .ab-tagline, .ab-section p,
+.ab-section ul, .ql-loading, .ql-pause-toggle, .detail-section h2,
+.section-note, .attr-name, .message-id, .message-ts, .pg-empty, .dy-empty,
+.fj-empty { color: var(--app-muted); }
+
+button:not(.btn-send):not(.btn-create):not(.pg-primary):not(.dy-btn-primary) {
+  color: var(--app-fg);
+}
+
+.ql-header, .queue-table thead th, .message-header, .pg-data-head,
+.pg-description-head, .dy-list-head, .fj-output-header, .tp-editor-header {
+  background: var(--app-surface-muted);
+  color: var(--app-fg);
+  border-color: var(--app-border);
+}
+
+.queue-table tbody tr, .attrs-table tr, .pg-table-item, .pg-row, .dy-row,
+.message-card, .queue-table tbody tr.row-dlq {
+  background: transparent;
+  color: var(--app-fg);
+  border-color: var(--app-border);
+}
+
+.queue-table tbody tr:hover, .pg-table-item:hover, .pg-table-item.active,
+.pg-row:hover, .pg-row.active, .dy-row:hover, .dy-row.active,
+.message-card:hover, .message-card.selected .message-header,
+.message-card.expanded .message-header { background: var(--app-hover); }
+
+.ql-region-select, .btn-refresh, .btn-copy-url, .btn-back, .btn-action,
+.btn-secondary, .pg-secondary, .pg-pagination button, .dy-btn-secondary,
+.dy-pagination button, .dy-icon-btn, .fj-copy {
+  background: var(--app-surface-muted);
+  color: var(--app-fg);
+  border-color: var(--app-border);
+}
+
+.queue-name code, .detail-title code, .message-body-preview, .message-attrs,
+.ab-code-block, .tp-preview-wrap { background: var(--app-surface-muted); color: var(--app-fg); }
+
+/* VS Code adds vscode-light, vscode-dark, or vscode-high-contrast to the webview body. */
+body.vscode-dark, body.vscode-light, body.vscode-high-contrast {
+  background: var(--vscode-editor-background) !important;
+  color: var(--vscode-foreground) !important;
+  font-family: var(--vscode-font-family) !important;
+  font-size: var(--vscode-font-size) !important;
+}
+
+body.vscode-dark .layout,
+body.vscode-light .layout,
+body.vscode-high-contrast .layout,
+body.vscode-dark .page,
+body.vscode-light .page,
+body.vscode-high-contrast .page {
+  background: var(--vscode-editor-background) !important;
+  color: var(--vscode-foreground) !important;
+}
+
+body.vscode-dark .sidebar,
+body.vscode-light .sidebar,
+body.vscode-high-contrast .sidebar,
+body.vscode-dark .sp-card,
+body.vscode-light .sp-card,
+body.vscode-high-contrast .sp-card,
+body.vscode-dark .pg-table-list,
+body.vscode-light .pg-table-list,
+body.vscode-high-contrast .pg-table-list,
+body.vscode-dark .pg-main,
+body.vscode-light .pg-main,
+body.vscode-high-contrast .pg-main {
+  background: var(--vscode-sideBar-background) !important;
+  border-color: var(--vscode-panel-border) !important;
+  color: var(--vscode-foreground) !important;
+}
+
+body.vscode-dark input,
+body.vscode-dark select,
+body.vscode-dark textarea,
+body.vscode-light input,
+body.vscode-light select,
+body.vscode-light textarea,
+body.vscode-high-contrast input,
+body.vscode-high-contrast select,
+body.vscode-high-contrast textarea {
+  background: var(--vscode-input-background) !important;
+  border-color: var(--vscode-input-border, var(--vscode-panel-border)) !important;
+  color: var(--vscode-input-foreground) !important;
+}
+
+body.vscode-dark button,
+body.vscode-light button,
+body.vscode-high-contrast button { font-family: var(--vscode-font-family) !important; }
+
+body.vscode-dark .pg-table-item,
+body.vscode-light .pg-table-item,
+body.vscode-high-contrast .pg-table-item,
+body.vscode-dark .pg-row,
+body.vscode-light .pg-row,
+body.vscode-high-contrast .pg-row { background: transparent !important; color: var(--vscode-foreground) !important; }
+
+body.vscode-dark .pg-table-item:hover,
+body.vscode-light .pg-table-item:hover,
+body.vscode-high-contrast .pg-table-item:hover,
+body.vscode-dark .pg-table-item.active,
+body.vscode-light .pg-table-item.active,
+body.vscode-high-contrast .pg-table-item.active,
+body.vscode-dark .pg-row:hover,
+body.vscode-light .pg-row:hover,
+body.vscode-high-contrast .pg-row:hover,
+body.vscode-dark .pg-row.active,
+body.vscode-light .pg-row.active,
+body.vscode-high-contrast .pg-row.active {
+  background: var(--vscode-list-activeSelectionBackground) !important;
+  color: var(--vscode-list-activeSelectionForeground) !important;
+}
+
+body.vscode-dark .pg-table-item small,
+body.vscode-light .pg-table-item small,
+body.vscode-high-contrast .pg-table-item small,
+body.vscode-dark .pg-header p,
+body.vscode-light .pg-header p,
+body.vscode-high-contrast .pg-header p { color: var(--vscode-descriptionForeground) !important; }
+
+/* The extension editor does not always add a vscode-* body class. These
+   selectors intentionally use the variables directly so both light and dark
+   workbench themes are handled. */
+#root,
+.layout-content,
+.page,
+.ql-page,
+.dt-page,
+.fj-page,
+.dy-page,
+.pg-page { background: var(--vscode-editor-background, #fff) !important; color: var(--vscode-foreground, #111) !important; }
+
+.sp-card, .tp-card, .tp-editor, .ab-card, .ab-section,
+.dt-input-section, .dt-panel, .dt-claim,
+.fj-controls, .fj-editor, .fj-output,
+.dy-list, .dy-detail, .dy-meta,
+.pg-table-list, .pg-main, .pg-data, .pg-row-detail,
+.cq-modal, .sm-modal, .smode-modal, .lt-modal {
+  background: var(--vscode-editorWidget-background, var(--vscode-sideBar-background, #fff)) !important;
+  border-color: var(--vscode-panel-border, #e5e7eb) !important;
+  color: var(--vscode-foreground, #111) !important;
+}
+
+.page-title, .app-header h1, .dt-header h1, .fj-header h1, .dy-page-header h1,
+.pg-header h1, .pg-selected-header h2, .tp-card-name, .tp-editor-header h2,
+.ab-name, .ab-section h3, .cq-modal h2, .sm-modal h2, .smode-modal h2, .lt-modal h2,
+.dt-panel h2, .pg-row-detail-head h3, .dy-detail-header h2 {
+  color: var(--vscode-foreground, #111827) !important;
+}
+
+.dt-header p, .fj-header p, .dy-page-header p, .pg-header p, .pg-selected-header p,
+.dt-claim-heading span, .dt-claim-timestamp, .fj-empty, .dy-empty, .pg-empty,
+.pg-table-item small, .sp-hint, .tp-card-desc, .ab-tagline, .ab-section p,
+.ab-section ul, .sm-hint, .lt-hint, .cq-hint {
+  color: var(--vscode-descriptionForeground, #6b7280) !important;
+}
+
+.sp-input, .sp-select, .tp-input, .tp-select, .tp-textarea,
+.dt-textarea, .fj-textarea, .dy-header-actions select, .dy-editor-body textarea,
+.pg-dialog-body textarea, input, select, textarea {
+  background: var(--vscode-input-background, #fff) !important;
+  color: var(--vscode-input-foreground, var(--vscode-foreground, #111)) !important;
+  border-color: var(--vscode-input-border, var(--vscode-panel-border, #d1d5db)) !important;
+}
+
+.pg-table-item, .pg-row, .dy-row, .queue-table tbody tr,
+.tp-cat-tab, .tp-list-item {
+  background: transparent !important;
+  color: var(--vscode-foreground, #111) !important;
+  border-color: var(--vscode-panel-border, #e5e7eb) !important;
+}
+
+.pg-table-item:hover, .pg-table-item.active, .pg-row:hover, .pg-row.active,
+.dy-row:hover, .dy-row.active, .queue-table tbody tr:hover, .tp-cat-tab:hover {
+  background: var(--vscode-list-hoverBackground, #eef2ff) !important;
+  color: var(--vscode-list-hoverForeground, var(--vscode-foreground, #111)) !important;
+}
+
+.pg-tabs button, .dt-tab, .fj-output-tab, .dy-editor-tabs button,
+.tp-cat-tab { color: var(--vscode-descriptionForeground, #6b7280) !important; }
+.pg-tabs button.active, .dt-tab--active, .fj-output-tab--active,
+.dy-editor-tabs button.active { color: var(--vscode-textLink-foreground, #4f46e5) !important; }
+
+.pg-data-head, .pg-description-head, .dy-list-head, .fj-output-header,
+.tp-editor-header { background: var(--vscode-editorWidget-background, #f9fafb) !important; color: var(--vscode-descriptionForeground, #6b7280) !important; border-color: var(--vscode-panel-border, #e5e7eb) !important; }
+
+.pg-overlay, .dy-overlay, .cq-overlay, .sm-overlay, .smode-overlay, .lt-overlay { background: var(--vscode-widget-shadow, rgba(0,0,0,.45)) !important; }
+
+/* Final extension-only pass: component styles were originally written for a
+   standalone light browser app and contain literal text colors. */
+.sws-vscode-webview body,
+.sws-vscode-webview #root,
+.sws-vscode-webview .extension-editor-surface {
+  background: var(--vscode-editor-background) !important;
+  color: var(--vscode-foreground) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface h1,
+.sws-vscode-webview .extension-editor-surface h2,
+.sws-vscode-webview .extension-editor-surface h3,
+.sws-vscode-webview .extension-editor-surface label,
+.sws-vscode-webview .extension-editor-surface p,
+.sws-vscode-webview .extension-editor-surface span,
+.sws-vscode-webview .extension-editor-surface li,
+.sws-vscode-webview .extension-editor-surface td,
+.sws-vscode-webview .extension-editor-surface th,
+.sws-vscode-webview .extension-editor-surface code {
+  color: var(--vscode-foreground) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface p,
+.sws-vscode-webview .extension-editor-surface small,
+.sws-vscode-webview .extension-editor-surface .dt-header p,
+.sws-vscode-webview .extension-editor-surface .fj-header p,
+.sws-vscode-webview .extension-editor-surface .dy-page-header p,
+.sws-vscode-webview .extension-editor-surface .pg-header p,
+.sws-vscode-webview .extension-editor-surface .pg-selected-header p {
+  color: var(--vscode-descriptionForeground) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface button {
+  color: var(--vscode-button-foreground, var(--vscode-foreground)) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface button:not(.pg-primary):not(.dy-btn-primary):not(.fj-copy):not(.dt-clear) {
+  background: var(--vscode-button-secondaryBackground, var(--vscode-editorWidget-background)) !important;
+  border-color: var(--vscode-button-border, var(--vscode-panel-border)) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface input,
+.sws-vscode-webview .extension-editor-surface select,
+.sws-vscode-webview .extension-editor-surface textarea {
+  background: var(--vscode-input-background) !important;
+  color: var(--vscode-input-foreground) !important;
+  border-color: var(--vscode-input-border, var(--vscode-panel-border)) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .pg-page,
+.sws-vscode-webview .extension-editor-surface .dy-page,
+.sws-vscode-webview .extension-editor-surface .fj-page,
+.sws-vscode-webview .extension-editor-surface .dt-page,
+.sws-vscode-webview .extension-editor-surface .page {
+  background: var(--vscode-editor-background) !important;
+}
+
+/* Final global pass for the standalone app and VS Code webview. */
+body, #root, .layout-content, .page, .ql-page, .detail, .dt-page, .fj-page, .dy-page, .pg-page {
+  background: var(--app-bg) !important;
+  color: var(--app-fg) !important;
+}
+
+.sp-card, .tp-card, .tp-editor, .ab-card, .ab-section, .dt-input-section,
+.dt-panel, .dt-claim, .fj-controls, .fj-editor, .fj-output, .dy-list, .dy-detail,
+.dy-meta, .pg-table-list, .pg-main, .pg-data, .pg-row-detail, .message-card,
+.confirm-dialog {
+  background: var(--app-surface) !important;
+  color: var(--app-fg) !important;
+  border-color: var(--app-border) !important;
+}
+
+body h1, body h2, body h3, body label, body li, body td, body th, body code,
+body .page-title, body .dt-header h1, body .fj-header h1, body .dy-page-header h1,
+body .pg-header h1, body .pg-selected-header h2, body .tp-card-name,
+body .tp-editor-header h2, body .ab-name, body .ab-section h3, body .detail-title,
+body .attr-value, body .queue-name code { color: var(--app-fg) !important; }
+
+body p, body small, body .dt-header p, body .fj-header p, body .dy-page-header p,
+body .pg-header p, body .pg-selected-header p, body .sp-hint, body .tp-card-desc,
+body .ab-tagline, body .ab-section p, body .ab-section ul, body .ql-loading,
+body .ql-pause-toggle, body .detail-section h2, body .section-note,
+body .attr-name, body .message-id, body .message-ts, body .pg-empty,
+body .dy-empty, body .fj-empty { color: var(--app-muted) !important; }
+
+body input, body select, body textarea, body .sp-input, body .sp-select,
+body .tp-input, body .tp-select, body .tp-textarea, body .dt-textarea,
+body .fj-textarea, body .dy-header-actions select, body .dy-editor-body textarea,
+body .pg-dialog-body textarea {
+  background: var(--app-input-bg) !important;
+  color: var(--app-input-fg) !important;
+  border-color: var(--app-border) !important;
+}
+
+body .ql-header, body .queue-table thead th, body .message-header,
+body .pg-data-head, body .pg-description-head, body .dy-list-head,
+body .fj-output-header, body .tp-editor-header {
+  background: var(--app-surface-muted) !important;
+  color: var(--app-fg) !important;
+  border-color: var(--app-border) !important;
+}
+
+body .queue-table tbody tr, body .attrs-table tr, body .pg-table-item,
+body .pg-row, body .dy-row, body .message-card, body .queue-table tbody tr.row-dlq {
+  background: transparent !important;
+  color: var(--app-fg) !important;
+  border-color: var(--app-border) !important;
+}
+
+body .queue-table tbody tr:hover, body .pg-table-item:hover,
+body .pg-table-item.active, body .pg-row:hover, body .pg-row.active,
+body .dy-row:hover, body .dy-row.active, body .message-card:hover,
+body .message-card.selected .message-header, body .message-card.expanded .message-header {
+  background: var(--app-hover) !important;
+  color: var(--app-fg) !important;
+}
+
+body .jh-pre { background: var(--json-bg) !important; color: var(--json-fg) !important; }
+body .jh-key, body .fj-tree-key { color: var(--json-key) !important; }
+body .jh-str, body .fj-tree-value--string { color: var(--json-string) !important; }
+body .jh-num, body .fj-tree-value--number { color: var(--json-number) !important; }
+body .jh-bool, body .fj-tree-value--boolean { color: var(--json-bool) !important; }
+body .jh-null, body .fj-tree-value--null { color: var(--json-null) !important; }
+body .fj-tree { background: var(--json-bg) !important; color: var(--json-fg) !important; }
+body .fj-tree-collection, body .fj-tree-chevron { color: var(--app-muted) !important; }
+
+/* These selectors intentionally match the extension surface specificity so
+  the generic editor span/code color rule cannot flatten JSON highlighting. */
+.sws-vscode-webview .extension-editor-surface .jh-key,
+.sws-vscode-webview .extension-editor-surface .fj-tree-key { color: var(--json-key) !important; }
+.sws-vscode-webview .extension-editor-surface .jh-str,
+.sws-vscode-webview .extension-editor-surface .fj-tree-value--string { color: var(--json-string) !important; }
+.sws-vscode-webview .extension-editor-surface .jh-num,
+.sws-vscode-webview .extension-editor-surface .fj-tree-value--number { color: var(--json-number) !important; }
+.sws-vscode-webview .extension-editor-surface .jh-bool,
+.sws-vscode-webview .extension-editor-surface .fj-tree-value--boolean { color: var(--json-bool) !important; }
+.sws-vscode-webview .extension-editor-surface .jh-null,
+.sws-vscode-webview .extension-editor-surface .fj-tree-value--null { color: var(--json-null) !important; }
+.sws-vscode-webview .extension-editor-surface .jh-pre,
+.sws-vscode-webview .extension-editor-surface .fj-tree { background: var(--json-bg) !important; color: var(--json-fg) !important; }
+
+body .dy-editor, body .dy-confirm, body .pg-dialog, body .pg-confirm,
+body .confirm-dialog, body .tp-confirm, body .tp-cat-manager,
+body .cq-modal, body .sm-modal, body .smode-modal, body .lt-modal {
+  background: var(--app-surface) !important;
+  color: var(--app-fg) !important;
+  border-color: var(--app-border) !important;
+}
+
+body .pg-inline-detail-panel { background: var(--app-surface) !important; border-color: var(--app-border) !important; }
+body .pg-inline-detail-head { border-color: var(--app-border) !important; }
+body .pg-table-list-title { background: var(--app-surface-muted) !important; color: var(--app-fg) !important; border-color: var(--app-border) !important; }
+body .pg-object-group { border-color: var(--app-border) !important; }
+body .pg-object-group strong { color: var(--app-muted) !important; }
+body .pg-object-group button { color: var(--app-fg) !important; }
+body .pg-object-group button:hover { background: var(--app-hover) !important; color: var(--app-link) !important; }
+body .pg-object-detail-panel { background: var(--app-surface) !important; border-color: var(--app-border) !important; }
+body .pg-object-detail-panel h3, body .pg-object-detail-panel button { color: var(--app-fg) !important; }
+body .pg-add-field label { color: var(--app-muted) !important; }
+body .pg-add-field input, body .pg-add-field textarea, body .pg-add-field select { background: var(--app-input-bg) !important; color: var(--app-input-fg) !important; border-color: var(--app-border) !important; }
+body .pg-database-select { background: var(--app-input-bg) !important; color: var(--app-input-fg) !important; border-color: var(--app-border) !important; }
+body .pg-query-dialog { background: var(--app-surface) !important; color: var(--app-fg) !important; border-color: var(--app-border) !important; }
+body .pg-query-toolbar input, body .pg-saved-query, body .pg-query-body > textarea { background: var(--app-input-bg) !important; color: var(--app-input-fg) !important; border-color: var(--app-border) !important; }
+body .pg-query-warning { background: var(--badge-warning-bg) !important; color: var(--badge-warning-fg) !important; border-color: var(--badge-warning-fg) !important; }
+body .pg-query-result { background: var(--app-surface) !important; border-color: var(--app-border) !important; }
+body .pg-query-meta, body .pg-query-result th, body .pg-query-result td { color: var(--app-fg) !important; border-color: var(--app-border) !important; }
+body .dy-record-detail { background: var(--app-surface) !important; border-color: var(--app-border) !important; }
+body .pg-inline-field { border-color: var(--app-border) !important; }
+body .pg-inline-field-name { color: var(--app-muted) !important; }
+body .pg-inline-field-value { color: var(--app-fg) !important; }
+body .pg-inline-field-value--key { color: var(--app-muted) !important; }
+body .pg-inline-field input { background: var(--app-input-bg) !important; color: var(--app-input-fg) !important; border-color: var(--app-link) !important; }
+
+body .dy-dialog-header, body .dy-dialog-footer, body .dy-editor-tabs,
+body .dy-editor-body, body .pg-dialog-header, body .pg-dialog-footer,
+body .pg-dialog-body, body .pg-editor-tabs, body .tp-editor-header,
+body .tp-editor-footer, body .cq-modal-header, body .cq-footer {
+  border-color: var(--app-border) !important;
+}
+
+body .dy-editor-body textarea, body .pg-dialog-body textarea,
+body .confirm-dialog, body .tp-confirm, body .tp-cat-manager,
+body .cq-modal, body .sm-modal, body .smode-modal, body .lt-modal {
+  background: var(--app-surface) !important;
+  color: var(--app-fg) !important;
+}
+
+/* Editor pages fill the available pane. The minimum width keeps dense data
+   tables usable; the surface provides horizontal scrolling when necessary. */
+.sws-vscode-webview .extension-editor-surface {
+  min-width: 760px;
+  width: 100%;
+}
+
+.sws-vscode-webview .extension-editor-surface .page,
+.sws-vscode-webview .extension-editor-surface .ql-page,
+.sws-vscode-webview .extension-editor-surface .detail,
+.sws-vscode-webview .extension-editor-surface .dt-page,
+.sws-vscode-webview .extension-editor-surface .fj-page,
+.sws-vscode-webview .extension-editor-surface .dy-page,
+.sws-vscode-webview .extension-editor-surface .pg-page {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* SQS list and queue-detail surfaces. */
+.sws-vscode-webview .extension-editor-surface .ql-header,
+.sws-vscode-webview .extension-editor-surface .ql-body {
+  background: var(--vscode-editor-background) !important;
+  color: var(--vscode-foreground) !important;
+  border-color: var(--vscode-panel-border) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .ql-region-select,
+.sws-vscode-webview .extension-editor-surface .btn-refresh,
+.sws-vscode-webview .extension-editor-surface .btn-copy-url,
+.sws-vscode-webview .extension-editor-surface .btn-back,
+.sws-vscode-webview .extension-editor-surface .btn-action,
+.sws-vscode-webview .extension-editor-surface .btn-secondary {
+  background: var(--vscode-button-secondaryBackground, var(--vscode-input-background)) !important;
+  color: var(--vscode-button-secondaryForeground, var(--vscode-foreground)) !important;
+  border-color: var(--vscode-button-border, var(--vscode-panel-border)) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .btn-send,
+.sws-vscode-webview .extension-editor-surface .btn-create,
+.sws-vscode-webview .extension-editor-surface .pg-primary,
+.sws-vscode-webview .extension-editor-surface .dy-btn-primary {
+  background: var(--vscode-button-background) !important;
+  color: var(--vscode-button-foreground) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .ql-pause-toggle,
+.sws-vscode-webview .extension-editor-surface .ql-loading,
+.sws-vscode-webview .extension-editor-surface .zero,
+.sws-vscode-webview .extension-editor-surface .detail-section h2,
+.sws-vscode-webview .extension-editor-surface .attr-name,
+.sws-vscode-webview .extension-editor-surface .section-note,
+.sws-vscode-webview .extension-editor-surface .message-id,
+.sws-vscode-webview .extension-editor-surface .message-ts {
+  color: var(--vscode-descriptionForeground) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .queue-table,
+.sws-vscode-webview .extension-editor-surface .attrs-table {
+  color: var(--vscode-foreground) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .queue-table thead th,
+.sws-vscode-webview .extension-editor-surface .message-header {
+  background: var(--vscode-editorWidget-background) !important;
+  color: var(--vscode-foreground) !important;
+  border-color: var(--vscode-panel-border) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .queue-table tbody tr,
+.sws-vscode-webview .extension-editor-surface .attrs-table tr,
+.sws-vscode-webview .extension-editor-surface .message-card {
+  background: transparent !important;
+  color: var(--vscode-foreground) !important;
+  border-color: var(--vscode-panel-border) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .queue-table tbody tr.row-clickable:hover,
+.sws-vscode-webview .extension-editor-surface .message-card:hover,
+.sws-vscode-webview .extension-editor-surface .message-card.selected .message-header,
+.sws-vscode-webview .extension-editor-surface .message-card.expanded .message-header {
+  background: var(--vscode-list-hoverBackground) !important;
+  color: var(--vscode-list-hoverForeground, var(--vscode-foreground)) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .queue-name code,
+.sws-vscode-webview .extension-editor-surface .detail-title code,
+.sws-vscode-webview .extension-editor-surface .message-body-preview,
+.sws-vscode-webview .extension-editor-surface .message-attrs {
+  background: var(--vscode-textCodeBlock-background, var(--vscode-editorWidget-background)) !important;
+  color: var(--vscode-foreground) !important;
+}
+
+.sws-vscode-webview .extension-editor-surface .alert.error,
+.sws-vscode-webview .extension-editor-surface .alert.info {
+  background: var(--vscode-inputValidation-errorBackground, var(--vscode-editorWidget-background)) !important;
+  border-color: var(--vscode-inputValidation-errorBorder, var(--vscode-panel-border)) !important;
+  color: var(--vscode-inputValidation-errorForeground, var(--vscode-foreground)) !important;
+}

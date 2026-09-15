@@ -1,0 +1,10 @@
+node_modules/
+src/
+extension/
+docs/
+.tmp_pdf_pages/
+.claude/
+.codebase-memory/
+*.tsbuildinfo
+sqs-data.json
+sqs-config.json

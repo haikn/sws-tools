@@ -1,0 +1,164 @@
+{
+  "name": "sws-tools",
+  "displayName": "SWS Tools",
+  "description": "Developer tools for SQS, DynamoDB, PostgreSQL, JSON, and JWT inspection.",
+  "version": "0.1.0",
+  "publisher": "KHN",
+  "license": "MIT",
+  "main": "./dist-extension/extension.cjs",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "icon": "resources/icon.png",
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "swsMonitor",
+          "title": "SWS Tools",
+          "icon": "resources/sws-tools.svg"
+        }
+      ]
+    },
+    "views": {
+      "swsMonitor": [
+        {
+          "id": "swsMonitor.view",
+          "name": "SWS Tools",
+          "type": "tree"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "swsMonitor.open",
+        "title": "SWS Tools: Open SQS"
+      },
+      {
+        "command": "swsMonitor.openPostgres",
+        "title": "SWS Tools: Open PostgreSQL"
+      },
+      {
+        "command": "swsMonitor.openDynamoDB",
+        "title": "SWS Tools: Open DynamoDB"
+      },
+      {
+        "command": "swsMonitor.openSqs",
+        "title": "SWS Tools: Open SQS"
+      },
+      {
+        "command": "swsMonitor.openPage",
+        "title": "SWS Tools: Open Tool"
+      }
+    ],
+    "configuration": {
+      "title": "SWS Monitor",
+      "properties": {
+        "swsMonitor.sqs.endpoint": {
+          "type": "string",
+          "default": "http://localhost:9324",
+          "description": "SQS-compatible endpoint used by SWS Monitor."
+        },
+        "swsMonitor.sqs.region": {
+          "type": "string",
+          "default": "eu-west-1",
+          "description": "AWS region used for SQS requests."
+        },
+        "swsMonitor.dynamodb.endpoint": {
+          "type": "string",
+          "default": "http://localhost:9324",
+          "description": "DynamoDB-compatible endpoint used by SWS Monitor."
+        },
+        "swsMonitor.dynamodb.region": {
+          "type": "string",
+          "default": "eu-west-1",
+          "description": "AWS region used for DynamoDB requests."
+        },
+        "swsMonitor.dynamodb.refreshSeconds": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "description": "DynamoDB refresh interval in seconds. Zero disables refresh."
+        },
+        "swsMonitor.dynamodb.quickDelete": {
+          "type": "boolean",
+          "default": false,
+          "description": "Delete DynamoDB rows immediately on right-click."
+        },
+        "swsMonitor.postgres.host": {
+          "type": "string",
+          "default": "localhost",
+          "description": "PostgreSQL host."
+        },
+        "swsMonitor.postgres.port": {
+          "type": "number",
+          "default": 5432,
+          "minimum": 1,
+          "maximum": 65535,
+          "description": "PostgreSQL port."
+        },
+        "swsMonitor.postgres.database": {
+          "type": "string",
+          "default": "ecu-update-db",
+          "description": "PostgreSQL database name."
+        },
+        "swsMonitor.postgres.user": {
+          "type": "string",
+          "default": "postgres",
+          "description": "PostgreSQL username."
+        },
+        "swsMonitor.postgres.refreshSeconds": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "description": "PostgreSQL refresh interval in seconds. Zero disables refresh."
+        },
+        "swsMonitor.postgres.quickDelete": {
+          "type": "boolean",
+          "default": false,
+          "description": "Delete PostgreSQL rows immediately on right-click."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "watch:web": "vite build --watch",
+    "build:web": "tsc -b && vite build",
+    "build:extension": "esbuild extension/extension.ts --bundle --platform=node --format=cjs --external:vscode --outfile=dist-extension/extension.cjs",
+    "typecheck:extension": "tsc -p extension/tsconfig.json --noEmit",
+    "build": "npm run build:web && npm run typecheck:extension && npm run build:extension",
+    "lint": "eslint .",
+    "test": "vitest",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1131.0",
+    "@aws-sdk/client-sqs": "^3.1131.0",
+    "@aws-sdk/util-dynamodb": "^3.996.9",
+    "pg": "^8.23.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^24.12.2",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@types/vscode": "^1.137.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "esbuild": "^0.28.2",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "globals": "^17.5.0",
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.58.2",
+    "vite": "^8.0.9",
+    "vitest": "^5.0.0"
+  }
+}

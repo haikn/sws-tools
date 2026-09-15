@@ -1,0 +1,87 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--vscode-editor-background, #fff);
+  color: var(--vscode-foreground, #111);
+  font-family: var(--vscode-font-family, system-ui, 'Segoe UI', sans-serif);
+  font-size: var(--vscode-font-size, 13px);
+  -webkit-font-smoothing: antialiased;
+  color-scheme: var(--vscode-color-scheme, light);
+}
+
+button, input, select, textarea { font-family: inherit; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 1px solid var(--vscode-focusBorder, #6366f1);
+  outline-offset: 1px;
+}
+
+/* Shared surface tokens keep the existing pages readable in VS Code themes. */
+.layout, .page, .ql-page, .dt-page, .fj-page, .dy-page, .pg-page { color: var(--vscode-foreground, #111); }
+.sidebar, .sp-card, .tp-card, .tp-editor, .dt-input-section, .dt-panel, .fj-controls, .fj-editor, .fj-output, .dy-list, .dy-detail, .dy-meta, .pg-table-list, .pg-main, .pg-data, .pg-row-detail {
+  background: var(--vscode-sideBar-background, var(--vscode-editor-background, #fff));
+  border-color: var(--vscode-panel-border, #e5e7eb);
+}
+.sp-input, .sp-select, .tp-input, .tp-select, .tp-textarea, .dt-textarea, .fj-textarea, .dy-header-actions select, .dy-editor-body textarea, .pg-dialog-body textarea {
+  background: var(--vscode-input-background, #fff);
+  border-color: var(--vscode-input-border, var(--vscode-panel-border, #d1d5db));
+  color: var(--vscode-input-foreground, var(--vscode-foreground, #111));
+}
+.page-title, .dt-header h1, .fj-header h1, .dy-page-header h1, .pg-header h1, .pg-selected-header h2 { color: var(--vscode-foreground, #111827); }
+.sidebar-item:hover, .pg-table-item:hover, .pg-table-item.active, .dy-row:hover, .dy-row.active { background: var(--vscode-list-hoverBackground, #eef2ff); }
+.sidebar-item--active { background: var(--vscode-list-activeSelectionBackground, #eef2ff); color: var(--vscode-list-activeSelectionForeground, #4338ca); }
+.fj-output-header, .dy-dialog-header, .pg-dialog-header { border-color: var(--vscode-panel-border, #e5e7eb); }
+.jh-pre { background: var(--vscode-textCodeBlock-background, #1a1b26); }
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.extension-editor-surface {
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.sidebar-placeholder {
+  padding: 20px 14px;
+  color: var(--vscode-descriptionForeground, #6b7280);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  body { background: #0f1117; color: #e5e7eb; }
+
+  .app-header h1 { color: #f3f4f6; }
+
+  .btn-refresh {
+    background: #1f2937;
+    border-color: #374151;
+    color: #e5e7eb;
+  }
+  .btn-refresh:hover:not(:disabled) { background: #374151; }
+
+  .badge.neutral  { background: #374151; color: #d1d5db; }
+  .badge.danger   { background: #450a0a; color: #fca5a5; }
+  .badge.warning  { background: #451a03; color: #fcd34d; }
+  .badge.info     { background: #0c1a3a; color: #93c5fd; }
+  .badge.fifo     { background: #2e1065; color: #c4b5fd; }
+
+  .countdown { background: #1f2937; color: #9ca3af; }
+  .refresh-info { color: #6b7280; }
+
+  .queue-table thead th { background: #111827; border-color: #374151; color: #d1d5db; }
+  .queue-table tbody tr { border-color: #1f2937; }
+  .queue-table tbody tr:hover { background: #111827; }
+  .queue-table tbody tr.row-dlq { background: #1c1008; }
+  .queue-table tbody tr.row-dlq:hover { background: #291a0a; }
+  .queue-name code { background: #1f2937; color: #e5e7eb; }
+  .zero { color: #4b5563; }
+
+  .alert.error { background: #1c0505; border-color: #7f1d1d; color: #fca5a5; }
+  .alert.info  { background: #050d1c; border-color: #1e3a5f; color: #93c5fd; }
+}
